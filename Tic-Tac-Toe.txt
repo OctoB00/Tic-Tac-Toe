@@ -1,0 +1,58 @@
+using System;
+
+namespace Tic_Tac_Toe
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[,] board = new int[3, 3];
+            bool gameover = false;
+            bool Playeroneturn = true;
+            while (gameover == false)
+            {
+                Console.Clear();
+                Console.WriteLine("    A   B   C");
+                Console.WriteLine("  +---+---+---+");
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.Write($"{i + 1} |");
+                    for (int j = 0; j < 3; j++)
+                    {
+                        string symbol;
+                        switch (board[i, j])
+                        {
+                            case 0: symbol = " "; break;
+                            case 1: symbol = "X"; break;
+                            default: symbol = "O"; break;
+                        }
+                        Console.Write($" {symbol} |");
+                    }
+                    Console.WriteLine("");
+                }
+                Console.WriteLine("  +---+---+---+");
+                Console.Write("Enter either A, B or C: ");
+                int pos1 = 0;
+                string input1 = Console.ReadLine().ToLower();
+                switch (input1)
+                {
+                    case "a": pos1 = 0; break;
+                    case "b": pos1 = 1; break;
+                    case "c": pos1 = 2; break;
+                }
+                Console.Write("Enter 1, 2 or 3: ");
+                int input2 = int.Parse(Console.ReadLine()) - 1;
+                if (Playeroneturn)
+                {
+                    board[input2, pos1] = 1;
+                }
+                else
+                {
+                    board[input2, pos1] = 2;
+                }
+                Playeroneturn = !Playeroneturn;
+            }
+            
+        }
+    }
+}
